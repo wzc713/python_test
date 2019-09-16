@@ -1,0 +1,76 @@
+一、备份数据：
+
+Mysqldump常用命令：
+
+mysqldump -u用户名 -p密码 --databases 数据库1 数据库2 > xxx.sql
+
+
+常见选项：
+
+-u: 用户名
+
+-p: 密码
+
+-P: 端口号，不写默认3306
+
+--all-databases, -A：备份所有数据库
+
+--databases, -B: 用于备份多个数据库，如果没有该选项，mysqldump把第一个名字参数作为数据库名，后面的作为表名。使用该选项，mysqldum把每个名字都当作为数据库名。
+
+-d: 只导出数据库的表结构
+
+-t: 只导出数据库的数据
+
+--quick, -q：快速导出
+
+--xml, -X：导出为xml文件
+
+
+
+下面是具体的使用samples:
+
+1. 备份全部数据库的数据和结构（-A）
+
+mysqldump -uroot -p123456 -A > 0101.sql
+2. 备份全部数据库的结构（-d）
+
+mysqldump -uroot -p123456 -P3306 -A -d > 0102.sql
+3. 备份全部数据库的数据（-t）
+
+mysqldump -uroot -p123456 -P3306 -A -t > 0103.sql
+4. 备份单个数据库的数据和结构（sakila 为数据库名）
+
+mysqldump -uroot -p123456 -P3306 sakila > 0104.sql
+5. 备份单个数据库结构（sakila 为数据库名，-d）
+
+mysqldump -uroot -p123456 -P3306 sakila -d > 0105.sql
+6. 备份单个数据库数据（sakila 为数据库名，-t）
+
+mysqldump -uroot -p123456 -P3306 sakila -t > 0106.sql
+7. 备份多个表的结构和数据 (table1,table2为表名)
+
+mysqldump -uroot -p123456 -P3306 sakila table1 table2 > 0107.sql
+8. 一次备份多个数据库
+
+mysqldump -uroot -p123456 --databases db1 db2 > 0108.sql
+
+
+二、还原数据库：
+
+1. 系统命令行：
+
+mysqladmin -uroot -p123456 create db_name
+mysql -uroot -p123456  db_name < d:\bak\0101.sql
+
+注：在导入备份数据库前，db_name如果没有，是需要创建的； 而且与backup20110527.sql中数据库名是一样的才可以导入。
+2. soure 方法：
+
+mysql > use db
+mysql > source d:\bak\0101.sql
+
+
+Comments：
+
+1. 还原单个数据库、单个数据库的多表需要指定数据库，而还原多个数据库时不用指定数据库。
+
+2. 区别：备份用的命令是mysqldump， 还原用的是mysql。

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通用展示数据页面</title>
+</head>
+<body>
+<h1>展示传来的数据</h1>
+<ul>
+{% for key,value in dict.items %}
+    <li>字段:   {{ key}},-------------------值: {{ value}}  </li>
+    {% endfor %}
+</ul>
+</body>
+</html>
