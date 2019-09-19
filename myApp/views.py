@@ -121,11 +121,12 @@ def jsontest(request):
         res = JsonResponse({'name': 'tongliya'})
         return res
 def main(request):
-    name=request.session.get('name',default='游客')
-    context={
+    ''' 登录主页，判断是否登录 '''
+    name = request.session.get('name', default='游客')
+    context = {
         'name':name
     }
-    return render(request,'myApp/main.html',context)
+    return render(request, 'myApp/main.html', context)
 def login(request):
     return render(request, 'myApp/login.html')
 from django.shortcuts import redirect
