@@ -19,9 +19,10 @@ def student(request):
     context={
         'students':stu
     }
-    return render(request,'myApp/students.html',context)
+    return render(request, 'myApp/students.html', context)
 #点击班级显示学生  num接受班级id
-def gradesstudents(request,num):
+def gradesstudents(request, num):
+    ''' 函数功能 '''
     gra=Grades.objects.get(pk=num)
     stulist=gra.students_set.all()
     context={
@@ -39,7 +40,8 @@ def addstudent(request):
     return  HttpResponse("ADD OK")
 
 #分页显示学生http://127.0.0.1:8000/stu/3/
-def stupage(reuqest,page):
+def stupage(reuqest, page):
+    ''' 注释 '''
     #0-5  5-10  10-15
     #1      2     3
     #每页显示两条记录
@@ -48,7 +50,7 @@ def stupage(reuqest,page):
     context = {
         'students': stulist
     }
-    return render(reuqest,'myApp/students.html',context)
+    return render(reuqest, 'myApp/students.html',context)
 #获取GET传递的参数http://127.0.0.1:8000/getdata/?a=1&b=2
 def getdata(request):
     a=request.GET.get('a')
@@ -61,11 +63,11 @@ def getdatas(request):
     a2=a[1]
     return  HttpResponse(a1+"    "+a2)
 def postdata(request):
-    name=request.POST.get('name')
-    gender=request.POST.get('gender')
-    hobby=request.POST.getlist('hobby')
-    password=request.POST.get('password')
-    context={
+    name = request.POST.get('name')
+    gender = request.POST.get('gender')
+    hobby = request.POST.getlist('hobby')
+    password = request.POST.get('password')
+    context = {
     'dict':{
         'name':name,
         'gender':gender,
@@ -74,9 +76,9 @@ def postdata(request):
     }
 
     }
-    return render(request,'myApp/showdata.html',context)
+    return render(request, 'myApp/showdata.html', context)
 def regist(request):
-    return render(request,'myApp/regist.html')
+    return render(request, 'myApp/regist.html')
 def requestdata(request):
 
     path=request.path
@@ -90,10 +92,13 @@ def requestdata(request):
     session=request.session
     print(path,method,encoding, get, post, files)
     return HttpResponse(path)
+
+
 def showresponse(request):
-    res=HttpResponse()
-    res.content='wzc good'
-    context={
+
+    res = HttpResponse()
+    res.content = 'wzc good'
+    context = {
         'dict':{
             'content':res.content,
             'charset':res.charset,
@@ -103,8 +108,8 @@ def showresponse(request):
     }
     return render(request, 'myApp/showdata.html', context)
 def cookiestest(request):
-    res=HttpResponse()
-    cook=res.set_cookie('name','tongliya')
+    res = HttpResponse()
+    cook = res.set_cookie('name','tongliya')
     res.write('cookies:    '+request.COOKIES['name'])
     return res
 from django.http import JsonResponse
@@ -129,10 +134,11 @@ def showmain(request):
     request.session['name'] = name
     request.session.set_expiry(50)#s设置50秒过期
     return  redirect('/main/')
+
 from django.contrib.auth import logout
+
 def quit(request):
     #request.session.clear()
     #request.session.flush()
     logout(request)
     return redirect('/main/')
-
