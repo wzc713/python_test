@@ -105,7 +105,7 @@ from django.db import models
 
 # Create your models here.
 class Grades(models.Model):
-    gname=models.CharField(max_length=20)
+    gname = models.CharField(max_length=20)
     gnum=models.IntegerField()
     createtime = models.DateTimeField(auto_now_add=True)
     isdelete=models.BooleanField(default=False)

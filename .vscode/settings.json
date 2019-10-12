@@ -1,0 +1,27 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true,
+    "python.linting.pylintArgs":[
+        "--disable=no-member",//model未定义变量
+        "--disable=assignment-from-no-return",//分配函数调用的结果，其中函数没有返回
+        "--disable=unused-argument",//未使用的参数
+        "--disable=unused-variable",//在本地声明但从未用过的变量的警告redefined-builtin
+        "--disable=wrong-import-position",
+        "--disable=redefined-builtin",//重新定义的内置函数或者变量
+            // "--disable=no-name-in-module",
+            // "--disable=import-error",
+            // "--disable=unused-import",
+            // "--disable=unused-argument",
+            // "--disable=missing-docstring",
+            // "--disable=unused-variable",
+            //"--disable=wrong-import-order",
+            // "--disable=ungrouped-imports",
+            //"--load-plugins",
+        ],
+    // "python.linting.pylintArgs":[
+    //     "--disable=no-name-in-module","--disable=import-error","--disable=Unknown word",
+    //     "--disable=unused-import","--disable=unused-argument","--disable=missing-docstring",
+    //     "--disable=unused-variable","--disable=wrong-import-order","--disable=ungrouped-imports",
+    //     "--load-plugins",
+    // ],
+}
